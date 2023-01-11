@@ -1,9 +1,22 @@
 package gui.fx.app.controller;
 
+import gui.fx.app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
-public class MenagerAplicationController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MenagerAplicationController implements Initializable {
+    @FXML
+    AnchorPane mainPage;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        mainPage.getChildren().setAll(Main.registerScene);
+    }
 
     @FXML
     void newCompanyMenu(ActionEvent event){
@@ -27,16 +40,18 @@ public class MenagerAplicationController {
     @FXML
     public void openCityMenu(ActionEvent event) {
     }
-
+    @FXML
     public void openModelMenu(ActionEvent event) {
     }
-
+    @FXML
     public void openVehicleMenu(ActionEvent event) {
     }
-
+    @FXML
     public void openTypeMenu(ActionEvent event) {
     }
-
+    @FXML
     public void profileMenu(ActionEvent event) {
     }
+
+
 }

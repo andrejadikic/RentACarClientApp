@@ -7,6 +7,10 @@ public class ClientApp {
     private String token;
     public static URL reservationUrl = Main.class.getClassLoader().getResource("reservation.fxml");
     public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
+    public static URL managerAppUrl = Main.class.getClassLoader().getResource("managerApp.fxml");
+//    public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
+//    public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
+//    public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
 
     private ClientApp()throws IllegalAccessException, NoSuchMethodException{}
 

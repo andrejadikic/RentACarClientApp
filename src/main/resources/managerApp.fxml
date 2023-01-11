@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.fx.app.controller.MenagerAplicationController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <Menu mnemonicParsing="false" text="New">
+                     <items>
+                  <MenuItem fx:id="newCompanyMenu" mnemonicParsing="false" onAction="#newCompanyMenu" text="Company" />
+                        <MenuItem fx:id="newCityMenu" mnemonicParsing="false" onAction="#newCityMenu" text="City" />
+                        <MenuItem fx:id="newModelMenu" mnemonicParsing="false" onAction="#newModelMenu" text="Model" />
+                        <MenuItem fx:id="newVehicleMenu" mnemonicParsing="false" onAction="#newVehicleMenu" text="Vehicle" />
+                        <MenuItem fx:id="newTypeMenu" mnemonicParsing="false" onAction="#newTypeMenu" text="Type" />
+                     </items></Menu>
+                  <Menu mnemonicParsing="false" text="Open">
+                     <items>
+                        <MenuItem fx:id="openCompanyMenu" mnemonicParsing="false" onAction="#openCompanyMenu" text="Company" />
+                        <MenuItem fx:id="openCityMenu" mnemonicParsing="false" onAction="#openCityMenu" text="Cities" />
+                        <MenuItem fx:id="openModelMenu" mnemonicParsing="false" onAction="#openModelMenu" text="Models" />
+                        <MenuItem fx:id="openVehicleMenu" mnemonicParsing="false" onAction="#openVehicleMenu" text="Vehicles" />
+                        <MenuItem fx:id="openTypeMenu" mnemonicParsing="false" onAction="#openTypeMenu" text="Types" />
+                     </items>
+                  </Menu>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem fx:id="profileMenu" mnemonicParsing="false" onAction="#profileMenu" text="Profile" />
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyApp" />
+          </items>
+        </Menu>
+            <Menu mnemonicParsing="false" text="Go to">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#profileMenu" text="User" />
+                  <MenuItem mnemonicParsing="false" onAction="#profileMenu"  text="Manager" />
+              </items>
+            </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" fx:id="mainPage" />
+  </children>
+</VBox>
