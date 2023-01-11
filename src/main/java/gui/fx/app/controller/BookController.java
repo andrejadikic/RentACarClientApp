@@ -10,7 +10,6 @@ import javafx.event.EventHandler;
 import java.io.IOException;
 
 public class BookController implements EventHandler<ActionEvent> {
-
     private ReservationView reservationView;
     private ReservationServiceRestClient reservationServiceRestClient;
 
