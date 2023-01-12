@@ -32,13 +32,12 @@ public class LoginView extends GridPane {
     }
 
     private void addListeners() {
-        btnLogin.setOnAction(new LoginController(tfUsername, tfPassword));
-        btnRegisterClient.setOnAction(e->{
-            Scene sc = new Scene(Main.managerAppScene, 1000, 500);
-            Main.secondStage.setScene(sc);
-            Main.secondStage.show();
-            Main.secondStage.setTitle("Registration for client");
-        });
+//        btnLogin.setOnAction(new LoginController(tfUsername, tfPassword));
+//        btnRegisterClient.setOnAction(e->{
+//            Main.secondStage.setScene(sc);
+//            Main.secondStage.show();
+//            Main.secondStage.setTitle("Registration for client");
+//        });
     }
 
     private void addViewElements() {

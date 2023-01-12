@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.fx.app.controller.VehicleController">
    <children>
       <Button fx:id="createBtn" layoutX="254.0" layoutY="276.0" mnemonicParsing="false" onAction="#create" text="Create" />
       <Label layoutX="75.0" layoutY="72.0" text="Vehicle plate number" />

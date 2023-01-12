@@ -59,7 +59,7 @@ public class ReservationView extends VBox {
 
     private void addListeners() {
         btnSearch.setOnAction(new SearchController(this));
-        btnBook.setOnAction(new BookController(this));
+        //btnBook.setOnAction(new BookController(this));
     }
 
     private void addElements() {

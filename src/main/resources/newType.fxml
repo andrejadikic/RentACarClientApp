@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.fx.app.controller.TypeController">
    <children>
-      <Button layoutX="256.0" layoutY="118.0" mnemonicParsing="false" text="Create" />
+      <Button layoutX="256.0" layoutY="118.0" mnemonicParsing="false" text="Create" onAction="#create"/>
       <Label layoutX="124.0" layoutY="72.0" text="Type" />
       <TextField fx:id="txtType" layoutX="195.0" layoutY="68.0" prefHeight="25.0" prefWidth="189.0" />
       <Label layoutX="270.0" layoutY="27.0" text="Add type" />

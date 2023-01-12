@@ -6,26 +6,41 @@ import gui.fx.app.restclient.dto.ReservationDto;
 import gui.fx.app.view.ReservationView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.IOException;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class BookController{
+    private ReservationServiceRestClient reservationServiceRestClient = new ReservationServiceRestClient();
 
-public class BookController implements EventHandler<ActionEvent> {
-    private ReservationView reservationView;
-    private ReservationServiceRestClient reservationServiceRestClient;
 
-    public BookController(ReservationView reservationView) {
-        this.reservationView = reservationView;
-        this.reservationServiceRestClient = new ReservationServiceRestClient();
+    public void addComment(ActionEvent event) {
     }
 
-    @Override
-    public void handle(ActionEvent event) {
-        AccommodationDto selected = reservationView.getTableReservation().getSelectionModel().getSelectedItem();
-        try {
-            ReservationDto reservation = reservationServiceRestClient.makeReservation(selected.getHotel(), selected.getRoomType(), selected.getStartDate(), selected.getEndDate());
-            reservationView.getReservationList().add(reservation);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void book(ActionEvent event) {
+    }
+
+    public void cancelReservation(ActionEvent event) {
+    }
+
+    public void filterReviews(ActionEvent event) {
+    }
+
+    public void deleteComment(ActionEvent event) {
+    }
+
+    public void updateComment(ActionEvent event) {
+    }
+
+    public void filter(ActionEvent event) {
+    }
+
+    public void sort(ActionEvent event) {
     }
 }

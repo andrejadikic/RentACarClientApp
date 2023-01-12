@@ -57,8 +57,8 @@
         </Menu>
             <Menu mnemonicParsing="false" text="Go to">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#profileMenu" text="User" />
-                  <MenuItem mnemonicParsing="false" onAction="#profileMenu"  text="Manager" />
+                <MenuItem fx:id="openUserMenu" mnemonicParsing="false" onAction="#openUserMenu" text="User" />
+                  <MenuItem fx:id="openAdminMenu" mnemonicParsing="false" onAction="#openAdminMenu"  text="Admin" />
               </items>
             </Menu>
       </menus>

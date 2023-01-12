@@ -62,24 +62,6 @@ public class UserServiceRestClient {
         }
         throw new RuntimeException("Something went wrong");
     }
-
-    public void updateClient(ClientCreateDto clientCreateDto) throws IOException{
-        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(clientCreateDto));
-        Request request = new Request.Builder()
-                .url(URL + "/client")
-                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
-                .put(body)
-                .build();
-        Call call = client.newCall(request);
-        Response response = call.execute();
-        System.out.println(response.code());
-        if (response.code() != 201) {
-            throw new RuntimeException("Something went wrong");
-        }
-
-    }
-
-
     public ManagerDto registerManager(ManagerCreateDto clientCreateDto) throws IOException {
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(clientCreateDto));
         Request request = new Request.Builder()
@@ -96,6 +78,20 @@ public class UserServiceRestClient {
         throw new RuntimeException("Something went wrong");
     }
 
+    public void updateClient(ClientCreateDto clientCreateDto) throws IOException{
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(clientCreateDto));
+        Request request = new Request.Builder()
+                .url(URL + "/client")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .put(body)
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() != 201) {
+            throw new RuntimeException("Something went wrong");
+        }
+    }
     public void updateManager(ManagerCreateDto clientCreateDto) throws IOException{
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(clientCreateDto));
         Request request = new Request.Builder()
@@ -109,8 +105,8 @@ public class UserServiceRestClient {
         if (response.code() != 201) {
             throw new RuntimeException("Something went wrong");
         }
-
     }
+
 
     private static String encodeUtf8(String val) throws UnsupportedEncodingException {
         return URLEncoder.encode(val, "UTF-8");

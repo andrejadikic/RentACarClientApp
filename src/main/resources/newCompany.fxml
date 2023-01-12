@@ -6,14 +6,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.fx.app.controller.CompanyController">
    <children>
-      <Button layoutX="273.0" layoutY="247.0" mnemonicParsing="false" text="Create" />
+      <Button layoutX="273.0" layoutY="247.0" mnemonicParsing="false" onAction="#create" text="Create" />
       <Label layoutX="124.0" layoutY="72.0" text="Name" />
       <Label layoutX="130.0" layoutY="118.0" text="Info" />
-      <TextArea layoutX="207.0" layoutY="110.0" prefHeight="99.0" prefWidth="291.0" />
-      <TextField layoutX="207.0" layoutY="68.0" prefHeight="25.0" prefWidth="251.0" />
+      <TextArea fx:id="txtInfo" layoutX="207.0" layoutY="110.0" prefHeight="99.0" prefWidth="291.0" />
+      <TextField fx:id="txtName" layoutX="207.0" layoutY="68.0" prefHeight="25.0" prefWidth="251.0" />
       <Label layoutX="242.0" layoutY="25.0" text="Create new company" />
    </children>
 </AnchorPane>
