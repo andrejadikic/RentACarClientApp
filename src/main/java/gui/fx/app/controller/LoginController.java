@@ -29,7 +29,7 @@ public class LoginController implements EventHandler<ActionEvent> {
         try {
             String token = userServiceRestClient.login(username.getText(), password.getText());
             ClientApp.getInstance().setToken(token);
-            Scene sc = new Scene(new ReservationView(), 800, 800);
+            Scene sc = new Scene(Main.managerAppScene, 1000, 500);
             Main.mainStage.setScene(sc);
             Main.mainStage.show();
         } catch (IOException e) {

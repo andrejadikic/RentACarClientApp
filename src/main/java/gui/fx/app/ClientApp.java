@@ -8,9 +8,9 @@ public class ClientApp {
     public static URL reservationUrl = Main.class.getClassLoader().getResource("reservation.fxml");
     public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
     public static URL managerAppUrl = Main.class.getClassLoader().getResource("managerApp.fxml");
-//    public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
-//    public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
-//    public static URL registrationUrl = Main.class.getClassLoader().getResource("registration.fxml");
+    public static URL userUpdateUrl = Main.class.getClassLoader().getResource("userUpdate.fxml");
+    public static URL managerUpdateUrl = Main.class.getClassLoader().getResource("managerUpdate.fxml");
+    public static URL registrationManagerUrl = Main.class.getClassLoader().getResource("registrationManager.fxml");
 
     private ClientApp()throws IllegalAccessException, NoSuchMethodException{}
 

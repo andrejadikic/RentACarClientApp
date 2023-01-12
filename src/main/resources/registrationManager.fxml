@@ -7,9 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.fx.app.controller.UserUpdateController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.fx.app.controller.RegisterManagerController">
    <children>
-      <Button fx:id="registerBtn" layoutX="269.0" layoutY="299.0" mnemonicParsing="false" onAction="#handle" text="Register" />
+      <Button fx:id="registerBtn" layoutX="269.0" layoutY="328.0" mnemonicParsing="false" onAction="#handle" text="Register" />
       <Label layoutX="120.0" layoutY="166.0" text="Username" />
       <Label layoutX="119.0" layoutY="103.0" text="First name" />
       <Label layoutX="119.0" layoutY="72.0" prefHeight="17.0" prefWidth="57.0" text="Last name" />
@@ -22,10 +22,12 @@
       <Label layoutX="122.0" layoutY="198.0" text="Password" />
       <Label layoutX="109.0" layoutY="230.0" text="Phone number" />
       <TextField fx:id="txtPhone" layoutX="201.0" layoutY="226.0" />
-      <TextField fx:id="txtPassport" layoutX="407.0" layoutY="194.0" />
+      <TextField fx:id="txtCompany" layoutX="201.0" layoutY="262.0" />
       <DatePicker fx:id="txtDateOfBirth" layoutX="393.0" layoutY="99.0" />
       <Label layoutX="454.0" layoutY="72.0" text="Date of birth" />
-      <Label layoutX="441.0" layoutY="166.0" text="Passport number" />
-      <Label layoutX="190.0" layoutY="26.0" text="Update your profile" />
+      <Label layoutX="119.0" layoutY="267.0" text="Company" />
+      <Label layoutX="190.0" layoutY="26.0" text="Sign up as manager for Rent a Car Vaksi Dejsi " />
+      <DatePicker fx:id="txtStartDate" layoutX="393.0" layoutY="170.0" />
+      <Label layoutX="440.0" layoutY="145.0" text="Start working day" />
    </children>
 </AnchorPane>

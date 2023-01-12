@@ -15,7 +15,7 @@ public class MenagerAplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainPage.getChildren().setAll(Main.registerScene);
+        mainPage.getChildren().setAll(Main.managerUpdateScene);
     }
 
     @FXML
@@ -51,6 +51,7 @@ public class MenagerAplicationController implements Initializable {
     }
     @FXML
     public void profileMenu(ActionEvent event) {
+        mainPage.getChildren().setAll(Main.managerUpdateScene);
     }
 
 
