@@ -15,6 +15,7 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.Base64;
+import java.util.List;
 
 public class ReservationServiceRestClient {
     public static final String URLResevration = "http://localhost:8084/reservation_service/api/reservation";
@@ -26,15 +27,16 @@ public class ReservationServiceRestClient {
     OkHttpClient client = new OkHttpClient();
     ObjectMapper objectMapper = new ObjectMapper();
 
+
+
     public VehicleListDto getAvailable(String city, String company, Date beginDate, Date endDate) throws IOException, URISyntaxException {
-
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
         String uri = UriComponentsBuilder.fromUriString(URLVehicle+"/available_vehicles")
                 .queryParam("city", encodeUtf8(city))
                 .queryParam("company", encodeUtf8(company))
-                .queryParam("beginDate", beginDate)
+                .queryParam("startDate", beginDate)
                 .queryParam("endDate", endDate)
+                .queryParam("asc", true)
                 .build()
                 .toUriString();
         Request request = new Request.Builder()
@@ -44,7 +46,6 @@ public class ReservationServiceRestClient {
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
-
         System.out.println(response.code());
         if (response.code() >= 200 && response.code() <= 300) {
             String json = response.body().string();
@@ -126,4 +127,83 @@ public class ReservationServiceRestClient {
         }
         throw new RuntimeException();
     }
+
+    public CompanyRatingListDto getCompanyRatings() throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        Request request = new Request.Builder()
+                .url(URLReviews+"/company_ratings")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .get()
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, CompanyRatingListDto.class);
+        }
+        throw new RuntimeException();
+    }
+
+    public ReviewListDto getReviews(String city, String company) throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        String uri = UriComponentsBuilder.fromUriString(URLReviews+"/filtered_reviews")
+                .queryParam("city", encodeUtf8(city))
+                .queryParam("company", encodeUtf8(company))
+                .build()
+                .toUriString();
+        Request request = new Request.Builder()
+                .url(uri)
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .get()
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, ReviewListDto.class);
+        }
+        throw new RuntimeException();
+    }
+
+    public ReviewDto addReview(ReviewCreateDto reviewCreateDto) throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(reviewCreateDto));
+        Request request = new Request.Builder()
+                .url(URLReviews+"/create")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .post(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, ReviewDto.class);
+        }
+        throw new RuntimeException();
+    }
+
+    public void deleteReviews(String vehiclePlateNumber) throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        String uri = UriComponentsBuilder.fromUriString(URLReviews+"/delete")
+                .queryParam("vehiclePlateNumber", encodeUtf8(vehiclePlateNumber))
+                .build()
+                .toUriString();
+        Request request = new Request.Builder()
+                .url(uri)
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .delete()
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+    }
+
+
+
+
+
 }

@@ -1,5 +1,6 @@
 package gui.fx.app.restclient;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gui.fx.app.ClientApp;
 import gui.fx.app.restclient.dto.*;
@@ -7,13 +8,7 @@ import okhttp3.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.sql.Date;
-import java.util.Base64;
-
 import java.net.URLEncoder;
 
 public class UserServiceRestClient {
@@ -107,6 +102,46 @@ public class UserServiceRestClient {
         }
     }
 
+    public UserListDto getUsers() throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        Request request = new Request.Builder()
+                .url(URL+"/user")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .get()
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, UserListDto.class);
+        }
+        throw new RuntimeException();
+    }
+
+    public void banUser(String username) throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(username));
+        String uri = UriComponentsBuilder.fromUriString(URL + "/user/ban")
+                .queryParam("username", encodeUtf8(username))
+                .queryParam("ban", true)
+                .build()
+                .toUriString();
+        Request request = new Request.Builder()
+                .url(uri)
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .post(body)
+                .build();
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            return;
+        }
+        throw new RuntimeException();
+    }
 
     private static String encodeUtf8(String val) throws UnsupportedEncodingException {
         return URLEncoder.encode(val, "UTF-8");

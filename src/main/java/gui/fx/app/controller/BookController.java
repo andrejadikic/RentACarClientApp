@@ -1,5 +1,6 @@
 package gui.fx.app.controller;
 
+import gui.fx.app.ClientApp;
 import gui.fx.app.restclient.ReservationServiceRestClient;
 import gui.fx.app.restclient.dto.*;
 import javafx.collections.FXCollections;
@@ -102,12 +103,19 @@ public class BookController implements Initializable {
 
 
     public void addComment(ActionEvent event) {
+        try{
+            ReviewCreateDto reviewCreateDto = new ReviewCreateDto(Integer.parseInt(ratingTxt.getText()),commentTxt.getText(),reservationsTable.getSelectionModel().getSelectedItem().getPlateNumber());
+            reservationServiceRestClient.addReview(reviewCreateDto);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void book(ActionEvent event) {
-        ReservationDto selected = reservationsTable.getSelectionModel().getSelectedItem();
+        VehicleDto selected = vehicleTable.getSelectionModel().getSelectedItem();
         try {
-            ReservationDto reservation = reservationServiceRestClient.makeReservation(selected.getPlateNumber(), selected.getStartDate(), selected.getEndDate());
+            ReservationDto reservation = reservationServiceRestClient.makeReservation(selected.getPlateNumber(), Date.valueOf(fromTxt.getValue()), Date.valueOf(toTxt.getValue()));
             reservationList.add(reservation);
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,14 +133,26 @@ public class BookController implements Initializable {
     }
 
     public void filterReviews(ActionEvent event) {
-
-
+        try {
+            reviewList.clear();
+            ReviewListDto reviews = reservationServiceRestClient.getReviews(cityTxt.getText(),
+                    companyTxt.getText());
+            reviewList.addAll(reviews.getContent());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteComment(ActionEvent event) {
+        try{
+            reservationServiceRestClient.deleteReviews(reservationsTable.getSelectionModel().getSelectedItem().getPlateNumber());
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateComment(ActionEvent event) {
+
     }
 
     public void filter(ActionEvent event) {
@@ -146,37 +166,47 @@ public class BookController implements Initializable {
         }
     }
 
-    public void sort(ActionEvent event) {
+    public void sort(ActionEvent event)  {
+
+        if(ClientApp.getInstance().getToken()!=null){
+            try {
+                reservationList.addAll(reservationServiceRestClient.getReservations().getContent());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            reservationList.addAll(reservationServiceRestClient.getReservations().getContent());
+            if(ClientApp.getInstance().getToken()!=null)
+                reservationList.addAll(reservationServiceRestClient.getReservations().getContent());
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         companyCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,String>("Company"));
-        plateNumberCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,String>("Plate number"));
+        plateNumberCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,String>("PlateNumber"));
         typeCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,String>("Type"));
         modelCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,String>("Model"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,Integer>("Price"));
+        priceCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,Integer>("PricePerDay"));
         cityCol.setCellValueFactory(new PropertyValueFactory<VehicleDto,String>("City"));
         vehicleTable.setItems(vehicleList);
 
         usernameCol.setCellValueFactory(new PropertyValueFactory<ReservationDto,String>("Username"));
-        plateCol.setCellValueFactory(new PropertyValueFactory<ReservationDto,String>("Plate number"));
-        startDateCol.setCellValueFactory(new PropertyValueFactory<ReservationDto,Date>("Start date"));
-        endDateCol.setCellValueFactory(new PropertyValueFactory<ReservationDto,Date>("End date"));
+        plateCol.setCellValueFactory(new PropertyValueFactory<ReservationDto,String>("PlateNumber"));
+        startDateCol.setCellValueFactory(new PropertyValueFactory<ReservationDto,Date>("StartDate"));
+        endDateCol.setCellValueFactory(new PropertyValueFactory<ReservationDto,Date>("EndDate"));
         priceCol1.setCellValueFactory(new PropertyValueFactory<ReservationDto,Integer>("Price"));
         reservationsTable.setItems(reservationList);
 
-        plateCol1.setCellValueFactory(new PropertyValueFactory<ReviewDto,String>("Plate number"));
+        plateCol1.setCellValueFactory(new PropertyValueFactory<ReviewDto,String>("PlateNumber"));
         usernameCol1.setCellValueFactory(new PropertyValueFactory<ReviewDto,String>("Username"));
         commentCol.setCellValueFactory(new PropertyValueFactory<ReviewDto,String>("Comment"));
         ratingCol.setCellValueFactory(new PropertyValueFactory<ReviewDto,Integer>("Rating"));
         reviewsTable.setItems(reviewList);
-
-
     }
 }

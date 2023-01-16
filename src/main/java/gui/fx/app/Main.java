@@ -38,7 +38,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         initScenes();
         mainStage.setTitle("SK-2");
-        mainStage.setScene(managerAppScene);
+        mainStage.setScene(loginScene);
         mainStage.show();
     }
 

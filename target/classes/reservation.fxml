@@ -38,7 +38,7 @@
          </children></FlowPane>
       <TableView fx:id="vehicleTable" layoutY="40.0" prefHeight="348.0" prefWidth="837.0">
         <columns>
-            <TableColumn prefWidth="124.0" text="Plate number" />
+            <TableColumn fx:id ="plateNumberCol"  prefWidth="124.0" text="Plate number" />
           <TableColumn fx:id="companyCol" prefWidth="122.0" text="Company" />
           <TableColumn fx:id="typeCol" prefWidth="162.0" text="Type" />
             <TableColumn fx:id="modelCol" prefWidth="200.0" text="Model" />

@@ -1,6 +1,8 @@
 package gui.fx.app.restclient.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Max;
@@ -10,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReviewCreateDto {
     @Min(1)
     @Max(5)
@@ -19,6 +23,4 @@ public class ReviewCreateDto {
     private String comment;
     @NotBlank
     private String vehiclePlateNumber;
-    @NotNull
-    private Long userId;
 }
