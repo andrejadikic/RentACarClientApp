@@ -117,6 +117,7 @@ public class BookController implements Initializable {
         try {
             ReservationDto reservation = reservationServiceRestClient.makeReservation(selected.getPlateNumber(), Date.valueOf(fromTxt.getValue()), Date.valueOf(toTxt.getValue()));
             reservationList.add(reservation);
+            vehicleList.remove(selected);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,7 +127,7 @@ public class BookController implements Initializable {
         ReservationDto selected = reservationsTable.getSelectionModel().getSelectedItem();
         try {
             ReservationDto reservation = reservationServiceRestClient.cancelReservation(selected);
-            reservationList.add(reservation);
+            reservationList.remove(selected);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -170,6 +171,7 @@ public class BookController implements Initializable {
 
         if(ClientApp.getInstance().getToken()!=null){
             try {
+                reservationList.clear();
                 reservationList.addAll(reservationServiceRestClient.getReservations().getContent());
             } catch (IOException e) {
                 throw new RuntimeException(e);

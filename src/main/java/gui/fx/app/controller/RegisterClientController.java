@@ -52,10 +52,13 @@ public class RegisterClientController  {
         clientCreateDto.setPassword(txtPassword.getText());
         clientCreateDto.setDateOfBirth(Date.valueOf(txtDateOfBirth.getValue()));
         clientCreateDto.setPhone(txtPhone.getText());
-//        clientCreateDto.setPassportNumber(txtPassport.getText());
-        clientCreateDto.setPassportNumber("1132<<211<720");
+        clientCreateDto.setPassportNumber(txtPassport.getText());
+//        clientCreateDto.setPassportNumber("1132<<211<720");
         try {
             ClientDto client = userServiceRestClient.registerClient(clientCreateDto);
+            if(client!=null){
+                Main.mainStage.setScene(Main.loginScene);
+            }
             System.out.println(client);
         } catch (IOException e) {
             e.printStackTrace();

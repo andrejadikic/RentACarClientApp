@@ -2,11 +2,16 @@ package gui.fx.app.restclient.dto;
 
 
 import javax.validation.constraints.*;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class VehicleDto {
     @NotBlank
     private String plateNumber;

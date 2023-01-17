@@ -186,6 +186,26 @@ public class ReservationServiceRestClient {
         throw new RuntimeException();
     }
 
+
+    public VehicleDto addVehicle(VehicleDto vehicleDto) throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(vehicleDto));
+        Request request = new Request.Builder()
+                .url(URLVehicle+"/add_vehicle")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .post(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, VehicleDto.class);
+        }
+        throw new RuntimeException();
+    }
+
     public void deleteReviews(String vehiclePlateNumber) throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String uri = UriComponentsBuilder.fromUriString(URLReviews+"/delete")

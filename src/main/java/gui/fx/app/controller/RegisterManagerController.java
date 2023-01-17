@@ -1,5 +1,6 @@
 package gui.fx.app.controller;
 
+import gui.fx.app.Main;
 import gui.fx.app.restclient.UserServiceRestClient;
 import gui.fx.app.restclient.dto.ManagerCreateDto;
 import gui.fx.app.restclient.dto.ManagerDto;
@@ -56,7 +57,10 @@ public class RegisterManagerController {
 
         try {
             ManagerDto manager = userServiceRestClient.registerManager(managerCreateDto);
-            System.out.println(manager);
+            if(manager!=null){
+                Main.mainStage.setScene(Main.loginScene);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
