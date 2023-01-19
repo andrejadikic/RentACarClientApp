@@ -68,7 +68,7 @@ public class MenagerAplicationController implements Initializable {
     }
     @FXML
     public void profileMenu(ActionEvent event) {
-        mainPage.getChildren().setAll(Main.managerUpdateScene);
+        mainPage.getChildren().setAll(Main.userUpdateScene);
     }
 
 

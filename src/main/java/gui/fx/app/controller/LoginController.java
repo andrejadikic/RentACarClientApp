@@ -27,6 +27,7 @@ public class LoginController{
     public void login(ActionEvent event) {
         try {
             String token = userServiceRestClient.login(txtUsername.getText(), txtPassword.getText());
+            System.out.println(token);
             ClientApp.getInstance().setToken(token);
             Main.mainStage.setScene(Main.managerAppScene);
             Main.mainStage.show();

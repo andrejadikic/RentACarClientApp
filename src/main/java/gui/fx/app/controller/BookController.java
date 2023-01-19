@@ -110,7 +110,7 @@ public class BookController implements Initializable {
             updateReviews();
 
         }catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -122,7 +122,7 @@ public class BookController implements Initializable {
             reservationList.add(reservation);
             vehicleList.remove(selected);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -136,7 +136,7 @@ public class BookController implements Initializable {
                     companyTxt.getText(), Date.valueOf(fromTxt.getValue()), Date.valueOf(toTxt.getValue()));
             vehicleList.addAll(vehicles.getContent());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -146,7 +146,7 @@ public class BookController implements Initializable {
         try {
             updateReviews();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -166,11 +166,21 @@ public class BookController implements Initializable {
             companyList.addAll(reservationServiceRestClient.getCompanyRatings().getContent());
             updateReviews();
         }catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     public void updateComment(ActionEvent event) {
+        try{
+            ReviewDto reviewDto = new ReviewDto(Integer.parseInt(ratingTxt.getText()),commentTxt.getText(),reviewsTable.getSelectionModel().getSelectedItem().getVehiclePlateNumber(),reviewsTable.getSelectionModel().getSelectedItem().getUsername());
+            reservationServiceRestClient.updateReview(reviewDto);
+            companyList.clear();
+            companyList.addAll(reservationServiceRestClient.getCompanyRatings().getContent());
+            updateReviews();
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
 
     }
 
@@ -181,7 +191,7 @@ public class BookController implements Initializable {
                     companyTxt.getText(), Date.valueOf(fromTxt.getValue()), Date.valueOf(toTxt.getValue()));
             vehicleList.addAll(vehicles.getContent());
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -195,8 +205,6 @@ public class BookController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-
-
     }
 
     @Override

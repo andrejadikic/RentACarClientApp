@@ -51,9 +51,8 @@ public class NotificationServiceRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
         System.out.println(response.code());
-            String json = response.body().string();
-            System.out.println(json);
-
+        String json = response.body().string();
+        System.out.println(json);
     }
 
 

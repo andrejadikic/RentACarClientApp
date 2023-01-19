@@ -56,8 +56,7 @@ public class UserUpdateController implements Initializable {
         clientCreateDto.setPassword(txtPassword.getText());
         clientCreateDto.setDateOfBirth(Date.valueOf(txtDateOfBirth.getValue()));
         clientCreateDto.setPhone(txtPhone.getText());
-//        clientCreateDto.setPassportNumber(txtPassport.getText());
-        clientCreateDto.setPassportNumber("1132<<211<720");
+        clientCreateDto.setPassportNumber(txtPassport.getText());
         try {
             userServiceRestClient.updateClient(clientCreateDto);
             System.out.println("Updated");

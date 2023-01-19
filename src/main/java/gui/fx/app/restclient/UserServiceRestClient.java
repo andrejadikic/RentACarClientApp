@@ -76,28 +76,28 @@ public class UserServiceRestClient {
     public void updateClient(ClientCreateDto clientCreateDto) throws IOException{
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(clientCreateDto));
         Request request = new Request.Builder()
-                .url(URL + "/client")
+                .url(URL + "/client/update")
                 .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
-                .put(body)
+                .post(body)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
         System.out.println(response.code());
-        if (response.code() != 201) {
+        if (response.code() > 300) {
             throw new RuntimeException("Something went wrong");
         }
     }
     public void updateManager(ManagerCreateDto clientCreateDto) throws IOException{
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(clientCreateDto));
         Request request = new Request.Builder()
-                .url(URL + "/manager")
+                .url(URL + "/manager/update")
                 .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
-                .put(body)
+                .post(body)
                 .build();
         Call call = client.newCall(request);
         Response response = call.execute();
         System.out.println(response.code());
-        if (response.code() != 201) {
+        if (response.code() >= 300) {
             throw new RuntimeException("Something went wrong");
         }
     }

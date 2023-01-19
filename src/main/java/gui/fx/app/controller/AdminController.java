@@ -47,7 +47,7 @@ public class AdminController implements Initializable {
         try {
             notificationServiceRestClient.addType(typeTxt.getText());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
     }
@@ -56,7 +56,7 @@ public class AdminController implements Initializable {
         try {
             notificationServiceRestClient.deleteType(typeTxt.getText());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ public class AdminController implements Initializable {
             userList.clear();
             userList.addAll(userServiceRestClient.getUsers().getContent());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -78,7 +78,7 @@ public class AdminController implements Initializable {
         try {
             userServiceRestClient.banUser(usersView.getSelectionModel().getSelectedItem().getUsername(),false);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 }

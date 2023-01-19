@@ -11,12 +11,9 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewDto {
-    private int rating;
+public class CompanyDto {
     @NotBlank
-    private String comment;
+    private String name;
     @NotBlank
-    private String vehiclePlateNumber;
-    @NotBlank
-    private String username;
+    private String info;
 }

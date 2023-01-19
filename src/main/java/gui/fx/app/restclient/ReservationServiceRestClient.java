@@ -21,6 +21,7 @@ public class ReservationServiceRestClient {
     public static final String URLResevration = "http://localhost:8084/reservation_service/api/reservation";
     public static final String URLVehicle = "http://localhost:8084/reservation_service/api/vehicle";
     public static final String URLReviews = "http://localhost:8084/reservation_service/api/review";
+    public static final String URLCompany = "http://localhost:8084/reservation_service/api/company";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
@@ -89,6 +90,7 @@ public class ReservationServiceRestClient {
     public ReservationListDto getReservations() throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         System.out.println(URLResevration);
+
         Request request = new Request.Builder()
                 .url(URLResevration+"/by_user")
                 .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
@@ -125,7 +127,9 @@ public class ReservationServiceRestClient {
             String json = response.body().string();
             return objectMapper.readValue(json, ReservationDto.class);
         }
-        throw new RuntimeException();
+        String json = response.body().string();
+        System.out.println(json);
+        throw new RuntimeException(json);
     }
 
     public CompanyRatingListDto getCompanyRatings() throws IOException {
@@ -206,6 +210,25 @@ public class ReservationServiceRestClient {
         throw new RuntimeException(response.body().string());
     }
 
+    public CompanyDto addCompany(CompanyDto companyDto) throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(companyDto));
+        Request request = new Request.Builder()
+                .url(URLCompany+"/add_company")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .post(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, CompanyDto.class);
+        }
+        throw new RuntimeException(response.body().string());
+    }
+
     public void deleteReviews(String vehiclePlateNumber) throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String uri = UriComponentsBuilder.fromUriString(URLReviews+"/delete")
@@ -223,7 +246,59 @@ public class ReservationServiceRestClient {
     }
 
 
+    public TypeDto addType(TypeDto vehicleDto) throws Exception {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(vehicleDto));
+        Request request = new Request.Builder()
+                .url(URLVehicle+"/add_type")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .post(body)
+                .build();
 
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, TypeDto.class);
+        }
+        throw new RuntimeException(response.body().string());
+    }
 
+    public void updateReview(ReviewDto reviewDto) throws Exception {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(reviewDto));
+        Request request = new Request.Builder()
+                .url(URLReviews+"/update")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .post(body)
+                .build();
 
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            System.out.println(json);
+        }
+    }
+
+    public ModelDto addModel(ModelDto vehicleDto) throws IOException {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(vehicleDto));
+        Request request = new Request.Builder()
+                .url(URLVehicle+"/add_model")
+                .header("Authorization", "Bearer " + ClientApp.getInstance().getToken())
+                .post(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+        System.out.println(response.code());
+        if (response.code() >= 200 && response.code() <= 300) {
+            String json = response.body().string();
+            return objectMapper.readValue(json, ModelDto.class);
+        }
+        throw new RuntimeException(response.body().string());
+    }
 }
