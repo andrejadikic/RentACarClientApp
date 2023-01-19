@@ -203,7 +203,7 @@ public class ReservationServiceRestClient {
             String json = response.body().string();
             return objectMapper.readValue(json, VehicleDto.class);
         }
-        throw new RuntimeException();
+        throw new RuntimeException(response.body().string());
     }
 
     public void deleteReviews(String vehiclePlateNumber) throws IOException {

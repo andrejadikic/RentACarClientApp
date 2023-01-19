@@ -56,5 +56,15 @@ public class UserDto {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
- 
+
+    @Override
+    public String toString() {
+        return
+                "id=" + id +
+                ", email= " + email +
+                ", firstName= " + firstName +
+                ", lastName= " + lastName +
+                ", username= " + username +
+                ", roleName= " + roleName;
+    }
 }

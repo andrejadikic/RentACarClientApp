@@ -120,12 +120,12 @@ public class UserServiceRestClient {
         throw new RuntimeException();
     }
 
-    public void banUser(String username) throws IOException {
+    public void banUser(String username, boolean ban) throws IOException {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(username));
         String uri = UriComponentsBuilder.fromUriString(URL + "/user/ban")
                 .queryParam("username", encodeUtf8(username))
-                .queryParam("ban", true)
+                .queryParam("ban", ban)
                 .build()
                 .toUriString();
         Request request = new Request.Builder()
