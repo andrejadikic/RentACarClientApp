@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="1119.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="gui.fx.app.controller.BookController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="1252.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.fx.app.controller.BookController">
    <children>
       <FlowPane prefHeight="40.0" prefWidth="994.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,17 +17,17 @@
                      <DatePicker fx:id="fromTxt" prefHeight="25.0" prefWidth="173.0" />
                      <Label layoutX="10.0" layoutY="16.0" text="To" />
                      <DatePicker fx:id="toTxt" layoutX="315.0" layoutY="13.0" prefHeight="25.0" prefWidth="175.0" />
-                     <Button fx:id="filterBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="54.0" text="Filter" onAction="#filter" />
+                     <Button fx:id="filterBtn" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="54.0" text="Filter" />
                      <ComboBox fx:id="sortCmb" prefHeight="25.0" prefWidth="76.0" promptText="Asc" />
-                     <Button fx:id="sortBtn" layoutX="525.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Sort" onAction="#sort"/>
-                  <Button mnemonicParsing="false" text="Update comment" onAction="#updateComment" />
-                  <Button mnemonicParsing="false" text="Delete comment" onAction="#deleteComment"/>
+                     <Button fx:id="sortBtn" layoutX="525.0" layoutY="12.0" mnemonicParsing="false" onAction="#sort" prefHeight="25.0" prefWidth="52.0" text="Sort" />
+                  <Button mnemonicParsing="false" onAction="#updateComment" text="Update comment" />
+                  <Button mnemonicParsing="false" onAction="#deleteComment" text="Delete comment" />
                  </items>
              </ToolBar>
          </children></FlowPane>
       <TableView fx:id="vehicleTable" layoutY="40.0" prefHeight="348.0" prefWidth="837.0">
         <columns>
-            <TableColumn fx:id ="plateNumberCol"  prefWidth="124.0" text="Plate number" />
+            <TableColumn fx:id="plateNumberCol" prefWidth="124.0" text="Plate number" />
           <TableColumn fx:id="companyCol" prefWidth="122.0" text="Company" />
           <TableColumn fx:id="typeCol" prefWidth="162.0" text="Type" />
             <TableColumn fx:id="modelCol" prefWidth="200.0" text="Model" />
@@ -55,25 +44,22 @@
             <TableColumn fx:id="priceCol1" prefWidth="98.0" text="Price" />
         </columns>
       </TableView>
-      <TableView fx:id="reviewsTable" layoutX="628.0" layoutY="383.0" prefHeight="294.0" prefWidth="488.0">
+      <TableView fx:id="reviewsTable" layoutX="628.0" layoutY="383.0" prefHeight="294.0" prefWidth="375.0">
         <columns>
-          <TableColumn fx:id="plateCol1" prefWidth="110.0" text="Plate number" />
-          <TableColumn fx:id="usernameCol1" prefWidth="95.0" text="Username" />
-            <TableColumn fx:id="commentCol" prefWidth="221.0" text="Comment" />
-            <TableColumn fx:id="ratingCol" prefWidth="61.0" text="Rating" />
+          <TableColumn fx:id="plateCol1" prefWidth="32.0" text="Plate number" />
+          <TableColumn fx:id="usernameCol1" prefWidth="77.0" text="Username" />
+            <TableColumn fx:id="commentCol" prefWidth="184.0" text="Comment" />
+            <TableColumn fx:id="ratingCol" prefWidth="81.0" text="Rating" />
         </columns>
       </TableView>
-      <Label layoutX="872.0" layoutY="79.0" text="Plate" />
       <Label layoutX="869.0" layoutY="110.0" text="Rating" />
       <Label layoutX="859.0" layoutY="172.0" text="Comment" />
-      <Label layoutX="858.0" layoutY="142.0" text="Username" />
       <TextArea fx:id="commentTxt" layoutX="919.0" layoutY="172.0" prefHeight="53.0" prefWidth="161.0" />
-      <TextField fx:id="plateTxt" layoutX="919.0" layoutY="75.0" />
       <TextField fx:id="ratingTxt" layoutX="919.0" layoutY="106.0" />
-      <TextField fx:id="usernameTxt" layoutX="919.0" layoutY="138.0" />
-      <Button layoutX="944.0" layoutY="242.0" mnemonicParsing="false" text="Give comment" onAction="#addComment"/>
-      <Button layoutX="859.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Book" onAction="#book"/>
-      <Button layoutX="972.0" layoutY="288.0" mnemonicParsing="false" text="Cancel reservation" onAction="#cancelReservation"/>
-      <Button layoutX="927.0" layoutY="339.0" mnemonicParsing="false" text="Filter reviews" onAction="#filterReviews"/>
+      <Button layoutX="944.0" layoutY="242.0" mnemonicParsing="false" onAction="#addComment" text="Give comment" />
+      <Button layoutX="859.0" layoutY="288.0" mnemonicParsing="false" onAction="#book" prefHeight="25.0" prefWidth="65.0" text="Book" />
+      <Button layoutX="972.0" layoutY="288.0" mnemonicParsing="false" onAction="#cancelReservation" text="Cancel reservation" />
+      <Button layoutX="927.0" layoutY="339.0" mnemonicParsing="false" onAction="#filterReviews" text="Filter reviews" />
+       <ListView fx:id="reviewView" layoutX="1003.0" layoutY="380.0" prefHeight="294.0" prefWidth="249.0" />
    </children>
 </AnchorPane>
